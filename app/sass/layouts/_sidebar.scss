@@ -1,0 +1,47 @@
+#sidebar {
+  header {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+
+    > .top {
+      height: $header-top-height;
+      background-color: $header-top-bg-color;
+    }
+
+    > .bottom {
+      height: $header-bottom-height;
+      background-color: $header-bottom-bg-color;
+    }
+  }
+
+  .user {
+    a.btn-login {
+      display: block;
+      padding: 0 20px;
+      line-height: $header-top-height;
+    }
+  }
+
+  ul.game-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+
+      > a {
+        display: block;
+        padding: 15px 20px;
+        color: $text-color;
+        text-decoration: none;
+
+        &.active {
+          background-color: darken(white, 4%); }
+
+        &:hover {
+          background-color: darken(white, 2%); }
+      }
+    }
+  }
+}

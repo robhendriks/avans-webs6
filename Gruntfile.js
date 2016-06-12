@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 				src: 'app/js/app.js',
 				dest: 'dist/js/app.js',
 				options: {
-					external: ['angular'],
+					external: ['angular', 'angular-ui-router'],
 					debug: true,
 					browserifyOptions: {debug: true}
 				}
@@ -40,14 +40,6 @@ module.exports = function(grunt) {
 				files: 'app/**/*.html',
 				tasks: 'copy'
 			}
-		},
-		'http-server': {
-			dev: {
-				root: './dist',
-				port: 3000,
-				openBrowser: false,
-				runInBackground: true
-			}
 		}
 	});
 
@@ -55,8 +47,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-http-server');
 
-	grunt.registerTask('default', ['browserify', 'sass', 'copy', 'http-server', 'watch']);
+	grunt.registerTask('default', ['browserify', 'sass', 'copy', 'watch']);
 
 };

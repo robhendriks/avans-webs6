@@ -1,0 +1,17 @@
+@mixin box-sizing($arg) {
+  -webkit-box-sizing: $arg;
+     -moz-box-sizing: $arg;
+          box-sizing: $arg;
+}
+
+@mixin border-radius($arg) {
+  -webkit-border-radius: $arg;
+     -moz-border-radius: $arg;
+          border-radius: $arg;
+}
+
+@mixin box-shadow($arg) {
+  -webkit-box-shadow: $arg;
+     -moz-box-shadow: $arg;
+          box-shadow: $arg;
+}
