@@ -15,32 +15,59 @@
   }
 
   .user {
-    a.btn-login {
+    a.btn-login,
+    span.name {
       display: block;
       padding: 0 20px;
       line-height: $header-top-height;
     }
+
+    span.name > i {
+      color: $link-color; }
   }
 
-  ul.game-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .games {
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    background-color: #fefefe;
 
-    > li {
-      border-bottom: 1px solid rgba(0, 0, 0, .06);
+    ul.game-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-      > a {
-        display: block;
-        padding: 15px 20px;
-        color: $text-color;
-        text-decoration: none;
+      > li {
+        border-bottom: 1px solid rgba(0, 0, 0, .06);
 
-        &.active {
-          background-color: darken(white, 4%); }
+        > a {
+          display: block;
+          padding: 15px 20px;
+          color: $text-color;
+          text-decoration: none;
 
-        &:hover {
-          background-color: darken(white, 2%); }
+          @include transition(all .2s ease);
+
+          &.active {
+            background-color: darken(white, 4%); 
+          }
+
+          &:hover {
+            background-color: darken(white, 2%); }
+
+          span.state {
+            display: inline-block;
+            margin-right: 5px;
+            width: 10px;
+            height: 10px;
+
+            @include border-radius(5px);
+
+            &-open { background-color: $tint-color-green; }
+            &-playing { background-color: $tint-color-yellow; }
+            &-finished { background-color: $tint-color-orange; }
+            &-ended { background-color: $tint-color-red; }
+          }
+        }
       }
     }
   }

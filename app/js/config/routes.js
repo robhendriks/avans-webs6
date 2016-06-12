@@ -7,6 +7,10 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 		.state('gameList', {
 			url: '/games',
 			views: {
+				'ViewProfile': {
+					templateUrl: 'partials/profile.html',
+					controller: 'ProfileCtrl'
+				},
 				'ViewMaster': {
 					templateUrl: 'partials/game-list.html',
 					controller: 'GameListCtrl'
@@ -26,7 +30,8 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 						game: function($stateParams, GameFactory, $q) {
 							var defer = $q.defer();
 							
-							GameFactory.GET(parseInt($stateParams.gameId), function(game) {
+							GameFactory.GET($stateParams.gameId, function(game) {
+								console.log(game);
 								defer.resolve(game);
 							});
 

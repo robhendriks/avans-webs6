@@ -1,5 +1,8 @@
 <ul class="game-list">
 	<li class="game" ng-repeat="game in games">
-		<a ui-sref="gameList.gameDetails({gameId: game.id})" ui-sref-active="active">{{game.title}}</a>
+		<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
+			<span class="state state-{{game.state}}"></span> {{game.gameTemplate._id}}
+		</a>
 	</li>
+	<li ng-hide="games.length">Geen resultaten</li>
 </ul>

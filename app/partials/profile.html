@@ -1,0 +1,6 @@
+<div ng-if="!hasUser()">
+	<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost/games" class="btn-login">Inloggen</a>
+</div>
+<div ng-if="hasUser()">
+	<span class="name"><i class="fa fa-fw fa-user"></i> {{user.username}}</span>
+</div>

@@ -14,14 +14,7 @@
 			<div id="sidebar" class="panel panel-left">
 				<header>
 					<div class="top">
-						<div class="user" ng-controller="UserCtrl">
-							<div ng-if="!hasUser()">
-								<a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost" class="btn-login">Inloggen</a>
-							</div>
-							<div ng-if="hasUser()">
-								<span>{{user.name}}</span>
-							</div>
-						</div>
+						<div class="user" ui-view="ViewProfile"></div>
 					</div>
 					<div class="bottom"></div>
 				</header>
@@ -31,6 +24,7 @@
 		</div>
 	</div>
 
+	<script src="https://use.fontawesome.com/34cf190a25.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>

@@ -2,23 +2,25 @@
 
 var _ = require('underscore');
 
-module.exports = function($timeout) {
+module.exports = function($http) {
 	return {
 		GET: function(id, callback) {
 
-			$timeout(function() {
-				var games = [
-					{id: 1, title: 'Foo'},
-					{id: 2, title: 'Bar'}
-				];
+			var query = '';
+			if (_.isFunction(id)) {
+				callback = id;
+			} else {
+				query = '/' + id;
+			}
 
-				if (_.isFunction(id)) {
-					return id(games);
-				}
-
-				var game = _.findWhere(games, {id: id});
-				callback(game);
-			}, 0);
+			$http({
+				method: 'GET',
+				url: 'http://mahjongmayhem.herokuapp.com/games' + query
+			}).then(function(response) {
+				callback(response.data);
+			}, function(response) {
+				callback(null);
+			});
 			
 		},
 		PUT: function() {},

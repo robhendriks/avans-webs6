@@ -1,22 +1,21 @@
 'use strict';
 
 require('angular/angular');
+require('angular-cookies/angular-cookies');
 require('angular-ui-router/release/angular-ui-router');
 
-var app = angular.module('mahjong', ['ui.router']);
+var app = angular.module('mahjong', ['ui.router', 'ngCookies']);
 
+app.factory('UserFactory', require('./services/userFactory'));
 app.factory('GameFactory', require('./services/gameFactory'));
 app.factory('TileFactory', require('./services/tileFactory'));
 
-app.controller('UserCtrl', require('./controllers/user'));
+app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
 
 app.config(require('./config/routes'));
 
 app.config(['$locationProvider', function($locationProvider) {
-	$locationProvider.html5Mode({
-		enabled: true,
-		requireBase: false
-	});
+	$locationProvider.html5Mode(true);
 }]);

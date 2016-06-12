@@ -15,3 +15,9 @@
      -moz-box-shadow: $arg;
           box-shadow: $arg;
 }
+
+@mixin transition($arg) {
+  -webkit-transition: $arg;
+     -moz-transition: $arg;
+          transition: $arg;
+}
