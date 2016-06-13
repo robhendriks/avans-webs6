@@ -5,7 +5,7 @@
 
     .user {
       .login a,
-      .profile {
+      .username {
         line-height: $header-height;
         padding: 0 20px;
         color: #fff;
@@ -22,9 +22,7 @@
           background-color: lighten($header-bg-color, 3%); }
       }
 
-      .profile {
-        padding:0 20px;
-
+      .username {
         @extend %truncate;
 
         span {

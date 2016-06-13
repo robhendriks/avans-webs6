@@ -1,0 +1,45 @@
+$alt-header-bg-color: lighten($header-bg-color, 5%);
+
+#game {
+  header {
+
+    height: $header-height;
+    background-color: $alt-header-bg-color;
+
+    .game-title,
+    .game-actions {
+      margin: 0;
+      line-height: $header-height; }
+
+    .game-title {
+      float: left;
+      padding: 0 20px;
+      color: #fff;
+    }
+
+    .game-actions {
+      float: right;
+      padding: 0;
+
+      > li {
+        display: inline-block;
+        margin-left: -4px;
+
+        > a {
+          display: block;
+          height: auto;
+          width: $header-height;
+          border-left: 1px solid rgba(0, 0, 0, .1);
+          text-align: center;
+          text-decoration: none;
+          color: #fff;
+
+          &:hover {
+            background-color: darken($alt-header-bg-color, 3%);}
+          &:active, &.active {
+            background-color: lighten($alt-header-bg-color, 3%);}
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,10 @@
-<div style="padding: 15px;">
-	<span>{{game._id}}</span>
-</div>
+<header>
+	<h3 class="game-title">{{game.gameTemplate._id}}</h3>
+
+	<ul class="game-actions">
+		<li><a ui-sref=".board" ui-sref-active="active"><i class="fa fa-fx fa-hand-pointer-o"></i></a></li>
+		<li><a ui-sref=".stats" ui-sref-active="active"><i class="fa fa-fx fa-circle-thin"></i></a></li>
+	</ul>
+</header>
+
+<div id="content" ui-view></div>

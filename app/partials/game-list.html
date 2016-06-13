@@ -11,7 +11,7 @@
 		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} as filtered">
 			<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
 				<span class="state state-{{game.state}}"></span>
-				{{game.gameTemplate._id}}
+				{{game.gameTemplate._id}} <sup class="count">{{game.players.length}}</sup>
 				<span class="creator">{{game.createdBy.name}}</span>
 			</a>
 		</li>
