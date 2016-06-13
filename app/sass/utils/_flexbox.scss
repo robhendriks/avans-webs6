@@ -1,0 +1,18 @@
+@mixin flex($arg) {
+  display: -webkit-$arg;
+  display: $arg;
+}
+
+%flex {
+  @include flex(flex); }
+%flex-inline {
+  @include flex(inline-flex); 
+}
+
+%flex-columns {
+  -webkit-flex-direction: column;
+          flex-direction:column;
+
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
+}

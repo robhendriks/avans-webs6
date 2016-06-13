@@ -1,71 +1,127 @@
 #sidebar {
   header {
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    height: $header-height;
+    background-color: $header-bg-color;
 
-    > .top {
-      height: $header-top-height;
-      background-color: $header-top-bg-color;
+    .user {
+      padding:0 20px;
+      line-height: $header-height;
+      color: #fff;
+
+      @extend %truncate;
+
+      span {
+        display: inline-block;
+
+        &.status {
+          $size: 11px;
+
+          height: $size;
+          width: $size;
+          margin-right: $size / 2;
+          background-color: $tint-color-green;
+
+          @include border-radius($size / 2);
+        }
+      }
     }
-
-    > .bottom {
-      height: $header-bottom-height;
-      background-color: $header-bottom-bg-color;
-    }
-  }
-
-  .user {
-    a.btn-login,
-    span.name {
-      display: block;
-      padding: 0 20px;
-      line-height: $header-top-height;
-    }
-
-    span.name > i {
-      color: $link-color; }
   }
 
   .games {
-    height: calc(100% - 100px);
+    overflow: hidden;
+    height: calc(100% - #{$header-height});
+  }
+
+  .game-states,
+  .game-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .game-states {
+    height: $game-states-height;
+    width: 100%;
+    background-color: $game-states-bg-color;
+    border-bottom: 1px solid #ededed;
+
+    @extend %flex-inline;
+
+    > li {
+      @extend %flex-columns;
+
+      > a {
+        display: block;
+        line-height: $game-states-height;
+        text-align: center;
+        text-decoration: none;
+        color: #ccc;
+
+        @include transition(all .5s ease);
+ 
+        &.active,
+        &:hover {
+          color: #666;
+          background-color: darken($game-states-bg-color, 2%); 
+        }
+      }
+    }
+  }
+
+  .game-list-wrapper {
     overflow-y: auto;
-    background-color: #fefefe;
+    height: calc(100% - #{$game-states-height});
+    width: 100%;
+    background-color: #fbfbfb;
 
-    ul.game-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-
+    .game-list {
       > li {
-        border-bottom: 1px solid rgba(0, 0, 0, .06);
+        border-bottom: 1px #eee solid;
+
+        &:last-of-type {
+          border-bottom: none; }
 
         > a {
           display: block;
           padding: 15px 20px;
-          color: $text-color;
           text-decoration: none;
+          color: #666;
 
-          @include transition(all .2s ease);
-
-          &.active {
-            background-color: darken(white, 4%); 
-          }
+          @include transition(all .5 ease);
 
           &:hover {
-            background-color: darken(white, 2%); }
+            background-color: darken(#fbfbfb, 1%); }
+          
+          &.active {
+            background-color: darken(#fbfbfb, 3%); }
 
-          span.state {
+          span {
             display: inline-block;
-            margin-right: 5px;
-            width: 10px;
-            height: 10px;
 
-            @include border-radius(5px);
+            &.state {
+              $size: 9px;
+              height: $size;
+              width: $size;
+              background: grey;
+              margin-right: $size;
 
-            &-open { background-color: $tint-color-green; }
-            &-playing { background-color: $tint-color-yellow; }
-            &-finished { background-color: $tint-color-orange; }
-            &-ended { background-color: $tint-color-red; }
+              $states: (
+                open: $tint-color-green, 
+                playing: $tint-color-orange, 
+                finished: $tint-color-red);
+
+              @each $state, $color in $states {
+                &-#{$state} { 
+                  background-color: $color; }
+              }
+
+              @include border-radius($size / 2);
+            }
+
+            &.creator {
+              float: right;
+              color: lighten(#666, 20%);
+            }
           }
         }
       }

@@ -1,8 +1,19 @@
-<ul class="game-list">
-	<li class="game" ng-repeat="game in games">
-		<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
-			<span class="state state-{{game.state}}"></span> {{game.gameTemplate._id}}
-		</a>
-	</li>
-	<li ng-hide="games.length">Geen resultaten</li>
+<ul class="game-states">
+	<li><a href="#" ng-class="{active: state == null}" ng-click="state = null">Alles</a></li>
+	<li><a href="#" ng-class="{active: state == 'open'}" ng-click="state = 'open'">Open</a></li>
+	<li><a href="#" ng-class="{active: state == 'playing'}" ng-click="state = 'playing'">Bezig</a></li>
+	<li><a href="#" ng-class="{active: state == 'finished'}" ng-click="state = 'finished'">Afgelopen</a></li>
 </ul>
+
+<div class="game-list-wrapper">
+	<ul class="game-list">
+		<li ng-hide="games.length">Geen resultaten</li>
+		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state}">
+			<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
+				<span class="state state-{{game.state}}"></span>
+				{{game.gameTemplate._id}}
+				<span class="creator">{{game.createdBy.name}}</span>
+			</a>
+		</li>
+	</ul>
+</div>
