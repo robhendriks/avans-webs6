@@ -32,7 +32,6 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 							var defer = $q.defer();
 							
 							GameFactory.GET($stateParams.gameId, function(game) {
-								console.log(game);
 								defer.resolve(game);
 							});
 
