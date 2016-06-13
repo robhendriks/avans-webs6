@@ -4,7 +4,7 @@ module.exports = function($scope, GameFactory) {
 	$scope.user = null;
 	$scope.games = [];
 
-	$scope.state = 'playing';
+	$scope.state = null;
 
 	$scope.init = function() {
 		GameFactory.GET(function(games) {

@@ -4,24 +4,42 @@
     background-color: $header-bg-color;
 
     .user {
-      padding:0 20px;
-      line-height: $header-height;
-      color: #fff;
+      .login a,
+      .profile {
+        line-height: $header-height;
+        padding: 0 20px;
+        color: #fff;
+      }
 
-      @extend %truncate;
+      .login a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
 
-      span {
-        display: inline-block;
+        &:hover {
+          background-color: darken($header-bg-color, 3%); }
+        &:active {  
+          background-color: lighten($header-bg-color, 3%); }
+      }
 
-        &.status {
-          $size: 11px;
+      .profile {
+        padding:0 20px;
 
-          height: $size;
-          width: $size;
-          margin-right: $size / 2;
-          background-color: $tint-color-green;
+        @extend %truncate;
 
-          @include border-radius($size / 2);
+        span {
+          display: inline-block;
+
+          &.status {
+            $size: 11px;
+
+            height: $size;
+            width: $size;
+            margin-right: $size / 2;
+            background-color: $tint-color-green;
+
+            @include border-radius($size / 2);
+          }
         }
       }
     }
@@ -81,9 +99,15 @@
         &:last-of-type {
           border-bottom: none; }
 
+        > a,
+        &.placeholder {
+          padding: 15px 20px; }
+
+        &.placeholder {
+          color: #666; }
+
         > a {
           display: block;
-          padding: 15px 20px;
           text-decoration: none;
           color: #666;
 

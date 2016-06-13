@@ -10,6 +10,7 @@ module.exports = function($location, $cookies) {
 			var user;
 			if (user = $cookies.getObject('user')) {
 				this.user = user;
+				console.log(user);
 				return callback(user);
 			}
 
@@ -21,7 +22,7 @@ module.exports = function($location, $cookies) {
 			this.user = {
 				username: query.username,
 				token: query.token
-			};
+			}
 
 			$cookies.putObject('user', this.user);
 			callback(this.user, true);

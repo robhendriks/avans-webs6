@@ -7,8 +7,8 @@
 
 <div class="game-list-wrapper">
 	<ul class="game-list">
-		<li ng-hide="games.length">Geen resultaten</li>
-		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state}">
+		<li class="placeholder" ng-show="!games.length || filtered.length == 0">Geen resultaten</li>
+		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} as filtered">
 			<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
 				<span class="state state-{{game.state}}"></span>
 				{{game.gameTemplate._id}}
