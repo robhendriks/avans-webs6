@@ -14,6 +14,7 @@ app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
 app.controller('GameUserListCtrl', require('./controllers/gameUsers'));
+app.controller('GameAddCtrl', require('./controllers/gameAdd'));
 
 app.config(require('./config/routes'));
 

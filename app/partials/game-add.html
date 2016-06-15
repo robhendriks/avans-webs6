@@ -1,0 +1,19 @@
+<form name="addForm">
+	<select name="gameTemplate" id="gameTemplate" ng-model="gameTemplate">
+		<option ng-repeat="template in gameTemplates" value="{{template._id}}">
+			{{template._id}}
+		</option>
+	</select>
+
+	<div class="left">
+		<span>Min Players</span>
+		<input type="number" ng-model="minPlayers" min="2" max="31" value="0">
+	</div>
+
+	<div class="right">
+		<span>Max Players</span>
+		<input type="number" ng-model="maxPlayers" min="3" max="32" value="32">
+	</div>
+
+	<a href="#" ng-click="submit()" id="submit">Nieuwe game aanmaken</a>
+ </form>

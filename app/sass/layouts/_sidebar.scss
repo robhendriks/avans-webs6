@@ -1,7 +1,10 @@
+$alt-header-bg-color: lighten($header-bg-color, 5%);
+
 #sidebar {
   header {
     height: $header-height;
     background-color: $header-bg-color;
+    position: relative;
 
     .user {
       .login a,
@@ -9,6 +12,25 @@
         line-height: $header-height;
         padding: 0 20px;
         color: #fff;
+      }
+
+      #addGame {
+        position: absolute;
+        width: $header-height;
+        height: 100%;
+        right:0;
+        top:0;
+        border-left: 1px solid rgba(0, 0, 0, .1);
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+
+        @include transition(0.5s);
+
+        &.active,
+        &:hover {
+          background-color: darken($alt-header-bg-color, 3%);
+        }
       }
 
       .login a {
@@ -45,7 +67,7 @@
 
   .games {
     overflow: hidden;
-    height: calc(100% - #{$header-height});
+    height: calc(100% - #{$header-height} - #{$add-game-height});
   }
 
   .game-states,
@@ -162,3 +184,53 @@
       }
   }
 }
+
+.addGameView {
+  height: $add-game-height;
+  border-top: 1px #eee solid;
+  color: #666;
+
+    form {
+      padding: 15px 20px;
+      overflow: hidden;
+
+      select { 
+       width: 100%;
+       margin-bottom: 10px;
+      }
+
+      .left {
+        width: 45%;
+        float: left;
+      }
+
+      .right {
+        width: 45%;
+        float: right;
+      }
+
+      span {
+        margin-right: 10px;
+      }
+
+      input[type='number']{
+        width: 104px;
+        text-indent: 10px;
+        color: #666;
+      }
+
+      #submit {
+        width: 100%;
+        line-height: 30px;
+        background: #5C4B51;
+        float: left;
+        margin-top: 10px;
+        text-align: center;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+    }
+}
+
+

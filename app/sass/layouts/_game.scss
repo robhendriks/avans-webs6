@@ -25,6 +25,11 @@ $alt-header-bg-color: lighten($header-bg-color, 5%);
         display: inline-block;
         margin-left: -4px;
 
+        &:first-child a {
+          width: auto;
+          padding: 0px 20px;
+        }
+
         > a {
           display: block;
           height: auto;

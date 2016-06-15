@@ -18,6 +18,10 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 				},
 				'ViewDetail': {
 					templateUrl: 'partials/intro.html'
+				},
+				'ViewAdd': {
+					templateUrl: 'partials/game-add.html',
+					controller: 'GameAddCtrl'
 				}
 			}
 		})
