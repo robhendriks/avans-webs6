@@ -10,7 +10,6 @@ module.exports = function($location, $cookies) {
 			var user;
 			if (user = $cookies.getObject('user')) {
 				this.user = user;
-				console.log(user);
 				return callback(user);
 			}
 

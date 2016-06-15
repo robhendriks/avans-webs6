@@ -42,4 +42,26 @@ $alt-header-bg-color: lighten($header-bg-color, 5%);
       }
     }
   }
+
+  #content {
+    height: calc(100% - #{$header-height});
+    overflow-y: auto;
+    border-left: 1px #eee solid;
+
+      #userList {
+        margin:0;
+        padding:0;
+
+          li {
+            line-height: 54px;
+            padding: 0px 20px;
+            color: #666;
+            border-bottom: 1px #eee solid;
+
+              .fa {
+                margin-right: 20px;
+              }
+          }
+      }
+  }
 }

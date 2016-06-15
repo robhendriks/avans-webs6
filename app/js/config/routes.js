@@ -28,7 +28,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 					templateUrl: 'partials/game-details.html',
 					controller: 'GameDetailsCtrl as g',
 					resolve: {
-						game: function($stateParams, GameFactory, $q) {
+						game: function($stateParams, GameFactory, UserFactory, $q) {
 							var defer = $q.defer();
 							
 							GameFactory.GET($stateParams.gameId, function(game) {
@@ -48,5 +48,21 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 		.state('gameList.gameDetails.stats', {
 			url: '/stats',
 			templateUrl: 'partials/game-stats.html'
+		})
+		.state('gameList.gameDetails.users', {
+			url: '/users',
+			templateUrl: 'partials/game-users.html',
+			controller: 'GameUserListCtrl',
+			resolve: {
+				game: function($stateParams, GameFactory, $q) {
+					var defer = $q.defer();
+					
+					GameFactory.GET($stateParams.gameId, function(game) {
+						defer.resolve(game);
+					});
+
+					return defer.promise;
+				}
+			}
 		});
 };

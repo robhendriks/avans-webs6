@@ -8,12 +8,17 @@
 <div class="game-list-wrapper">
 	<ul class="game-list">
 		<li class="placeholder" ng-show="!games.length || filtered.length == 0">Geen resultaten</li>
-		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} as filtered">
+		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} | filter: userFilter as filtered">
 			<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
 				<span class="state state-{{game.state}}"></span>
-				{{game.gameTemplate._id}} <sup class="count">{{game.players.length}}</sup>
+				{{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
 				<span class="creator">{{game.createdBy.name}}</span>
 			</a>
 		</li>
 	</ul>
 </div>
+
+<div class="game-list-filter">
+	<input type="checkbox" id="user-filter" ng-click="filterOnUser()" />
+	<label for="user-filter">Laat spellen zien waar ik in zit</label>
+</div> 

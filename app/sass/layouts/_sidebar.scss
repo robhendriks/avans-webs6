@@ -86,7 +86,7 @@
 
   .game-list-wrapper {
     overflow-y: auto;
-    height: calc(100% - #{$game-states-height});
+    height: calc(100% - #{$game-states-height} - #{$game-filters-height});
     width: 100%;
     background-color: #fbfbfb;
 
@@ -148,5 +148,17 @@
         }
       }
     }
+  }
+
+  .game-list-filter {
+    height: $game-filters-height;
+    border-top: 1px #eee solid;
+    line-height: $game-filters-height;
+    padding: 0px 20px;
+    color: #666;
+
+      label {
+        margin-left: 10px;
+      }
   }
 }

@@ -13,6 +13,7 @@ app.factory('TileFactory', require('./services/tileFactory'));
 app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
+app.controller('GameUserListCtrl', require('./controllers/gameUsers'));
 
 app.config(require('./config/routes'));
 
