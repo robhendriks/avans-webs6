@@ -3,8 +3,9 @@
 require('angular/angular');
 require('angular-cookies/angular-cookies');
 require('angular-ui-router/release/angular-ui-router');
+require('angular-socket-io/socket');
 
-var app = angular.module('mahjong', ['ui.router', 'ngCookies']);
+var app = angular.module('mahjong', ['ui.router', 'ngCookies', 'btford.socket-io']);
 
 app.factory('UserFactory', require('./services/userFactory'));
 app.factory('GameFactory', require('./services/gameFactory'));
