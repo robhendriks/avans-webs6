@@ -1,48 +1,85 @@
 'use strict';
 
+var _ = require('underscore');
+
+const pageSize = 25;
+
 module.exports = function($scope, GameFactory, UserFactory) {
-	$scope.user = null;
-	$scope.games = [];
+  var initialized = false;
 
-	$scope.state = null;
-	$scope.user = false;
+  $scope.user = null;
+  $scope.games = [];
 
-	var userid = null;
+  $scope.states = [
+    {id: 'open', text: 'Open'},
+    {id: 'playing', text: 'Bezig'},
+    {id: 'finished', text: 'Afgelopen'}
+  ];
+  $scope.page = 0;
+  $scope.userOnly = false;
+  $scope.state = null;
+  $scope.loaded = false;
+  $scope.hasMore = true;
 
-	$scope.init = function() {
-		GameFactory.GET(function(games) {
-			$scope.games = games;
-		});
+  $scope.init = function() {
+    UserFactory.me(function(user) {
+      $scope.user = user;
+      $scope.loadGames();
+    });
+  };
 
-		UserFactory.me(function(id){
-			userid = id['username'];
-		});
-	};
+  $scope.reset = function() {
+    $scope.page = 0;
+    $scope.games = [];
+    $scope.hasMore = true;
+  };
 
-	$scope.filterState = function() {
-		return $scope.state !== null;
-	};
+  $scope.loadGames = function() {
+    $scope.loaded = false;
 
-	$scope.filterOnUser = function(){
-		if($scope.user){ $scope.user = false;}
-		else{ $scope.user = true;}
-	};
+    GameFactory.GET({
+      pageSize: pageSize,
+      pageIndex: $scope.page,
+      state: ($scope.state !== null) ? $scope.state.id : null,
+      player: ($scope.userOnly && $scope.user !== null) ? $scope.user.username : null
+    }, function(games) {
+      if (!initialized) { initialized = true; }
 
-	$scope.userFilter = function(game){
-		if($scope.user && userid != null){
-			if(game['createdBy']['_id'] == userid){
-				return game;
-			}
-			for(var i = 0; i < game['players'].length; i++) {
-			    if(game['players'][i]['_id'] == userid){
-			    	return game;	
-			    }
-			}
-		}
-		else {
-			return game;
-		}
-	}
+      $scope.loaded = true;
+      $scope.hasMore = (games.length >= pageSize);
+      
+      if ($scope.page > 0) {
+        $scope.games = $scope.games.concat(games);
+      } else {
+        $scope.games = games;
+      }
+    });
+  };
 
-	$scope.init();
+  $scope.loadMoreGames = function() {
+    $scope.page++;
+  };
+
+  $scope.setState = function(index) {
+    if (!$scope.loaded || index === $scope.state) {
+      return;
+    } else if (index < 0 || index > $scope.states.length) {
+      $scope.state = null;
+      return;
+    }
+    $scope.state = $scope.states[index];
+  };
+
+  $scope.$watchGroup(['state', 'userOnly'], function(oldValues, newValues) {
+    if (!initialized) { return; }
+    $scope.reset();
+    $scope.loadGames();
+  });
+
+  $scope.$watch('page', function(oldValue, newValue) {
+    if (!initialized) { return; }
+    $scope.loadGames();
+  });
+
+  $scope.init();
 };

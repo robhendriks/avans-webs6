@@ -18,5 +18,5 @@ app.controller('GameUserListCtrl', require('./controllers/gameUsers'));
 app.config(require('./config/routes'));
 
 app.config(['$locationProvider', function($locationProvider) {
-	$locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 }]);

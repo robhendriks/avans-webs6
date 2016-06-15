@@ -1,24 +1,37 @@
 <ul class="game-states">
-	<li><a href="#" ng-class="{active: state == null}" ng-click="state = null">Alles</a></li>
-	<li><a href="#" ng-class="{active: state == 'open'}" ng-click="state = 'open'">Open</a></li>
-	<li><a href="#" ng-class="{active: state == 'playing'}" ng-click="state = 'playing'">Bezig</a></li>
-	<li><a href="#" ng-class="{active: state == 'finished'}" ng-click="state = 'finished'">Afgelopen</a></li>
+  <li><a href="#" ng-class="{'active': state == null}" ng-click="setState(-1)">Alles</a></li>
+  <li ng-repeat="state in states">
+    <a href="#" ng-class="{'active': $parent.state.id == state.id}" ng-click="setState($index)">{{state.text}}</a>
+  </li>
 </ul>
 
 <div class="game-list-wrapper">
-	<ul class="game-list">
-		<li class="placeholder" ng-show="!games.length || filtered.length == 0">Geen resultaten</li>
-		<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} | filter: userFilter as filtered">
-			<a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
-				<span class="state state-{{game.state}}"></span>
-				{{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
-				<span class="creator">{{game.createdBy.name}}</span>
-			</a>
-		</li>
-	</ul>
+  <ul class="game-list">
+    <!-- <li class="placeholder" ng-show="!games.length || filtered.length == 0">Geen resultaten</li> -->
+    <!--<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} | filter: userFilter as filtered">-->
+
+    <li class="game game-{{game.state}}" ng-repeat="game in games">    
+      <a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
+        <span class="game-name">{{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup></span>
+        <span class="game-creator">{{game.createdBy.name}}</span>
+      </a>
+    </li>
+
+    <li class="placeholder placeholder-spinner" ng-if="!loaded">
+      <i class="fa fa-spin fa-refresh"></i>
+    </li>
+
+    <li class="placeholder placeholder-more" ng-if="loaded && hasMore" ng-click="loadMoreGames()">
+      Meer spellen&hellip;
+    </li>
+
+    <li class="placeholder placeholder-empty" ng-if="loaded && !games.length">
+      <i class="fa fa-fw fa-frown-o"></i> Geen spellen gevonden
+    </li>
+  </ul>
 </div>
 
 <div class="game-list-filter">
-	<input type="checkbox" id="user-filter" ng-click="filterOnUser()" />
-	<label for="user-filter">Laat spellen zien waar ik in zit</label>
+  <input type="checkbox" id="user-filter" ng-model="userOnly"/>
+  <label for="user-filter">Alleen spellen waar ik in zit weergeven</label>
 </div> 

@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = function($scope, game) {
-	$scope.players = game['players'];
+  $scope.players = game['players'];
 };

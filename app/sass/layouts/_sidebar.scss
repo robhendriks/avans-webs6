@@ -95,55 +95,54 @@
         border-bottom: 1px #eee solid;
 
         &:last-of-type {
-          border-bottom: none; }
-
-        > a,
-        &.placeholder {
-          padding: 15px 20px; }
-
-        &.placeholder {
-          color: #666; }
-
-        > a {
-          display: block;
-          text-decoration: none;
-          color: #666;
-
-          @include transition(all .5 ease);
-
+          border-bottom: none; }        
+        
+        &.game,
+        &.placeholder-more {
+          cursor: pointer;
+          
           &:hover {
             background-color: darken(#fbfbfb, 1%); }
-          
           &.active {
             background-color: darken(#fbfbfb, 3%); }
+        }
 
-          span {
-            display: inline-block;
+        a,
+        &.placeholder {
+          text-decoration: none;
+          color: #666;
+          padding: 15px 20px; 
+        }
 
-            &.state {
-              $size: 9px;
-              height: $size;
-              width: $size;
-              background: grey;
-              margin-right: $size;
+        &.game {
+          > a {
+            display: flex;
 
-              $states: (
-                open: $tint-color-green, 
-                playing: $tint-color-orange, 
-                finished: $tint-color-red);
+            flex-flow: row nowrap;
+            justify-content: space-between;
 
-              @each $state, $color in $states {
-                &-#{$state} { 
-                  background-color: $color; }
+            span {
+              &.game-name,
+              &.game-creator {
+                @extend %truncate; }
+              &.game-name {
+                flex-shrink: 1;}
+              &.game-creator {
+                flex-shrink: 2;
+                font-size: 85%;
+                color: lighten(#666, 20%);
               }
-
-              @include border-radius($size / 2);
             }
+          }
 
-            &.creator {
-              float: right;
-              color: lighten(#666, 20%);
-            }
+          $states: (
+            open: $tint-color-green, 
+            playing: $tint-color-orange, 
+            finished: $tint-color-red);
+
+          @each $state, $color in $states {
+            &-#{$state} { 
+              border-left: 3px solid $color; }
           }
         }
       }
