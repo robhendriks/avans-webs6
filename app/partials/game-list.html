@@ -9,7 +9,9 @@
   <ul class="game-list">
     <li class="game game-{{game.state}}" ng-repeat="game in games" ui-sref-active="active">    
       <a ui-sref="gameList.gameDetails({gameId: game._id})">
-        <span class="game-name">{{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup></span>
+        <span class="game-name">
+          {{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
+        </span>
         <span class="game-creator">{{game.createdBy.name}}</span>
       </a>
     </li>

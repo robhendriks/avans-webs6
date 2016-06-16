@@ -6,7 +6,7 @@ module.exports = function($http, UserFactory) {
   return {
     GET: function(arg, callback) {
 
-      var url = 'http://mahjongmayhem.herokuapp.com/games';
+      var url = 'http://mahjongmayhem.herokuapp.com/Games';
       var params = {};
       if (_.isFunction(arg)) {
         callback = arg;
@@ -29,7 +29,32 @@ module.exports = function($http, UserFactory) {
 
     },
     PUT: function() {},
-    POST: function() {},
-    DELETE: function() {}
+    POST: function(game, callback) {
+
+      $http({
+        method: 'POST',
+        url: 'http://mahjongmayhem.herokuapp.com/Games',
+        data: game
+      })
+        .then(function(response) {
+          callback(response.data);
+        }, function(response) {
+          callback(null);
+        });
+
+    },
+    DELETE: function(id, callback) {
+
+      $http({
+        method: 'DELETE',
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + id
+      })
+        .then(function(response) {
+          callback();
+        }, function(response) {
+          callback();
+        });
+
+    }
   };
 };

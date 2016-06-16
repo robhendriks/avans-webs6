@@ -21,16 +21,25 @@ module.exports = function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('gameList.gameCreate', {
+      url: '/create',
+      views: {
+        'ViewDetail@': {
+          templateUrl: 'partials/game-create.html',
+          controller: 'GameCreateCtrl'
+        }
+      }
+    })
     .state('gameList.gameDetails', {
       url: '/{gameId:[a-zA-Z0-9]{24,}}',
       views: {
         'ViewDetail@': {
           templateUrl: 'partials/game-details.html',
-          controller: 'GameDetailsCtrl as g',
+          controller: 'GameDetailsCtrl',
           resolve: {
             game: function($stateParams, GameFactory, UserFactory, $q) {
               var defer = $q.defer();
-              
+          
               GameFactory.GET($stateParams.gameId, function(game) {
                 defer.resolve(game);
               });
@@ -45,21 +54,14 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       url: '/board',
       templateUrl: 'partials/game-board.html'
     })
-    .state('gameList.gameDetails.stats', {
-      url: '/stats',
-      templateUrl: 'partials/game-stats.html'
+    .state('gameList.gameDetails.info', {
+      url: '/info',
+      templateUrl: 'partials/game-info.html',
+      controller: 'GameInfoCtrl'
     })
     .state('gameList.gameDetails.users', {
       url: '/users',
       templateUrl: 'partials/game-users.html',
       controller: 'GameUserListCtrl'
-    })
-    .state('gameList.createGame', {
-      url: '/create',
-      views: {
-        'ViewDetail@': {
-          template: 'omg lad'
-        }
-      }
     });
 };

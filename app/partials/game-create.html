@@ -1,1 +1,37 @@
-test
+<header class="header header-dark">
+  <h3 class="title">Nieuw spel</h3>
+
+  <ul class="actions">
+    <li class="button" ng-hide="working"><a ui-sref="^"><i class="fa fa-fw fa-times"></i></a></li>
+  </ul>
+</header>
+
+<div id="content">
+  <div class="content-wrap">
+    <span ng-show="working">
+      <i class="fa fa-fw fa-spin fa-cog"></i> Een ogenblik geduld&hellip;
+    </span>
+
+    <form name="form" ng-submit="submit(form.$valid)" class="form" ng-hide="working" novalidate>
+      <div class="form-group">
+        <label for="template">Template</label>
+        <select name="template" ng-options="template._id for template in templates" ng-model="selectedTemplate" ng-required="true"></select>
+      </div>
+
+      <div class="form-group" ng-class="{'error': form.minPlayers.$invalid}">
+        <label for="minPlayers">Min. aantal spelers</label>
+        <input name="minPlayers" type="number" min="2" max="32"  value="2" ng-model="minPlayers" ng-required="true">
+        <span class="error error-danger" ng-show="form.minPlayers.$invalid">Voer een getal tussen de 2 en 32 in.</span>
+      </div>
+
+      <div class="form-group" ng-class="{'error': form.maxPlayers.$invalid}">
+        <label for="maxPlayers">Max. aantal spelers</label>
+        <input name="maxPlayers" type="number" min="2" max="32" value="32" ng-model="maxPlayers" ng-required="true">
+        <span class="error" ng-show="form.maxPlayers.$invalid">Voer een getal tussen de 2 en 32 in.</span>
+      </div>
+
+      <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid">Opslaan</button>
+    </form>
+
+  </div>
+</div>

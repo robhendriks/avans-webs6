@@ -22,10 +22,8 @@ module.exports = function($scope, GameFactory, UserFactory) {
   $scope.hasMore = true;
 
   $scope.init = function() {
-    UserFactory.me(function(user) {
-      $scope.user = user;
-      $scope.loadGames();
-    });
+    $scope.user = UserFactory.get();
+    $scope.loadGames();
   };
 
   $scope.reset = function() {
@@ -58,6 +56,15 @@ module.exports = function($scope, GameFactory, UserFactory) {
 
   $scope.loadMoreGames = function() {
     $scope.page++;
+  };
+
+  $scope.deleteGame = function(game) {
+    for (var i = 0; i < $scope.games.length; i++) {
+      if ($scope.games[i]._id === game._id) {
+        $scope.games.splice(i, 1);
+        return;
+      }
+    }
   };
 
   $scope.setState = function(index) {

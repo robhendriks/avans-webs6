@@ -2,20 +2,19 @@
 
 module.exports = function($location, $cookies) {
   return {
-    me: function(callback) {
+    get: function(callback) {
       if (this.user) {
-        return callback(this.user);
+        return this.user;
       }
 
       var user;
       if (user = $cookies.getObject('user')) {
-        this.user = user;
-        return callback(user);
+        return this.user = user;
       }
 
       var query = $location.search();
       if (!query.username || !query.token) {
-        return callback(false);
+        return null;
       }
 
       this.user = {
@@ -24,7 +23,7 @@ module.exports = function($location, $cookies) {
       };
 
       $cookies.putObject('user', this.user);
-      callback(this.user, true);
+      return this.user;
     }
   };
 };

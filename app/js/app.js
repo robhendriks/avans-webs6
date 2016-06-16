@@ -10,14 +10,22 @@ var app = angular.module('mahjong', ['ui.router', 'ngCookies', 'btford.socket-io
 app.factory('UserFactory', require('./services/userFactory'));
 app.factory('GameFactory', require('./services/gameFactory'));
 app.factory('TileFactory', require('./services/tileFactory'));
+app.factory('TemplateFactory', require('./services/templateFactory'));
+app.factory('httpRequestInterceptor', require('./services/httpRequestInterceptor'));
 
 app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
 app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
+app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
+app.controller('GameCreateCtrl', require('./controllers/gameCreate'));
 
 app.config(require('./config/routes'));
 
 app.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(true);
 }]);
+
+app.config(function($httpProvider) {
+  $httpProvider.interceptors.push('httpRequestInterceptor');
+});

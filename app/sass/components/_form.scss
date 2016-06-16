@@ -1,0 +1,84 @@
+$btn-styles: (
+  default: (bg: #ddd, fg: #666),
+  primary: (bg: $header-bg-light, fg: #fff),
+  success: (bg: $tint-color-green, fg: #fff),
+  warning: (bg: $tint-color-yellow, fg: #fff),
+  danger: (bg: $tint-color-red, fg: #fff)
+);
+
+.btn {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 20px;
+  border: none;
+
+  @include border-radius(3px);
+
+  @each $name, $style in $btn-styles {
+    $bg-color: map-get($style, 'bg');
+    $fg-color: map-get($style, 'fg');
+    
+    &-#{$name} {
+      background-color: $bg-color;
+      color: $fg-color;
+
+      &:hover {
+        background-color: lighten($bg-color, 10%); }
+      &:active,
+      .active {
+        background-color: darken($bg-color, 5%); }
+      &:disabled {
+        background-color: rgba($bg-color, .7);
+        color: rgba($fg-color, .7);
+      }
+    }
+  }
+}
+
+form.form {
+  div.form-group {
+    margin: 10px 0;
+
+    &.error {
+      input,
+      select {
+        border-color: $tint-color-red; }
+    }
+
+    &:first-of-type {
+      margin-top: 0; }
+    &:last-of-type {
+      margin-bottom: 20px; }
+
+    label,
+    input,
+    select {
+      display: block; }
+
+    input,
+    select {
+      width: 100%;
+      padding: 5px 10px;
+      border: 1px #ddd solid;
+      outline: none;
+
+      @include border-radius(3px);
+    }
+
+    input {
+      -webkit-appearance: none;
+              appearance: none;
+      background-color: #fff;
+    }
+
+    select {
+      height: 2.5em;
+    }
+
+    span.error {
+      margin: 0;
+      padding: 0;
+      color: $tint-color-red;
+    }
+  }
+}
