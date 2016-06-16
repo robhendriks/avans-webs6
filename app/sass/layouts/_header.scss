@@ -1,0 +1,76 @@
+header.header {
+  height: $header-height;
+
+  @extend %clearfix;
+
+  h3.title,
+  ul.actions li {
+    float: left;
+    line-height: $header-height - $header-action-border-height;
+  }
+
+  h3.title, 
+  ul.actions li a {
+    color: #fff; }
+
+  h3.title,
+  ul.actions {
+    margin: 0;
+    padding: 0;
+  }
+
+  h3.title {
+    margin-left: 20px; }
+
+  ul.actions {
+    float: right;
+    list-style: none;
+
+    @extend %clearfix;
+
+    li, 
+    li a {
+      @include transition(all .2s ease); }
+    
+    li {
+      width: $header-height;
+      text-align: center;
+      
+      &.toggle {
+        border-bottom: $header-action-border-height solid gray;
+        &.active { border-bottom-color: white; }
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+
+  $themes: (
+    light: $header-bg-light,
+    dark: $header-bg-dark
+  );
+
+  @each $name, $color in $themes {
+    &-#{$name} {
+      background-color: $color;
+    }
+
+    ul.actions li.toggle {
+      border-bottom-color: lighten($color, 10%);
+
+      &:hover {
+        border-bottom-color: lighten($color, 20%); 
+        a { color: darken(white, 20%); }
+      }
+      &.active {
+        border-bottom-color: lighten($color, 30%);
+        a { color: #fff; }
+      }
+
+      a { color: darken(white, 30%); }
+    }
+  }
+}

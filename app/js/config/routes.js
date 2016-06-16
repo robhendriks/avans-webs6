@@ -52,17 +52,6 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     .state('gameList.gameDetails.users', {
       url: '/users',
       templateUrl: 'partials/game-users.html',
-      controller: 'GameUserListCtrl',
-      resolve: {
-        game: function($stateParams, GameFactory, $q) {
-          var defer = $q.defer();
-          
-          GameFactory.GET($stateParams.gameId, function(game) {
-            defer.resolve(game);
-          });
-
-          return defer.promise;
-        }
-      }
+      controller: 'GameUserListCtrl'
     });
 };

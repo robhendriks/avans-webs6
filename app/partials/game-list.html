@@ -7,11 +7,8 @@
 
 <div class="game-list-wrapper">
   <ul class="game-list">
-    <!-- <li class="placeholder" ng-show="!games.length || filtered.length == 0">Geen resultaten</li> -->
-    <!--<li class="game" ng-repeat="game in games | filter: (filterState() || '') && {state: state} | filter: userFilter as filtered">-->
-
-    <li class="game game-{{game.state}}" ng-repeat="game in games">    
-      <a ui-sref="gameList.gameDetails({gameId: game._id})" ui-sref-active="active">
+    <li class="game game-{{game.state}}" ng-repeat="game in games" ui-sref-active="active">    
+      <a ui-sref="gameList.gameDetails({gameId: game._id})">
         <span class="game-name">{{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup></span>
         <span class="game-creator">{{game.createdBy.name}}</span>
       </a>

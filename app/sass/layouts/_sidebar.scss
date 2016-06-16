@@ -1,7 +1,6 @@
 #sidebar {
   header {
     height: $header-height;
-    background-color: $header-bg-color;
 
     .user {
       .login a,
@@ -9,17 +8,6 @@
         line-height: $header-height;
         padding: 0 20px;
         color: #fff;
-      }
-
-      .login a {
-        display: block;
-        text-align: center;
-        text-decoration: none;
-
-        &:hover {
-          background-color: darken($header-bg-color, 3%); }
-        &:active {  
-          background-color: lighten($header-bg-color, 3%); }
       }
 
       .username {
@@ -101,6 +89,8 @@
         &.placeholder-more {
           cursor: pointer;
           
+          @include transition(all .2s ease);
+
           &:hover {
             background-color: darken(#fbfbfb, 1%); }
           &.active {

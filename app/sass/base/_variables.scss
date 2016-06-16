@@ -1,3 +1,4 @@
+/* Colors */
 $bg-color: #ecf0f1;
 
 $tint-color-red: #e74c3c;
@@ -5,16 +6,22 @@ $tint-color-yellow: #ffe11a;
 $tint-color-orange: #fd7400;
 $tint-color-green: #bedb39;
 
+/* Panel */
 $panel-left-bg: #fff;
 $panel-right-bg: #f7f9fa;
 
-$text-color: #222;
+/* Typography */
+$text-color: #333;
 $link-color: #3498DB;
 $link-color-hover: darken($link-color, 15%);
 
+/* Header */
 $header-height: 60px;
-$header-bg-color: #5C4B51;
+$header-bg-light: #644d52;
+$header-bg-dark: darken($header-bg-light, 3%);
+$header-action-border-height: 3px;
 
+/* Game */
 $game-states-height: 40px;
 $game-states-bg-color: #fbfbfb;
 $game-filters-height: 45px;
