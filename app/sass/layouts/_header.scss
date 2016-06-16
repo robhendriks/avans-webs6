@@ -1,13 +1,13 @@
 header.header {
+  overflow: hidden;
   height: $header-height;
-
+  
   @extend %clearfix;
 
   h3.title,
   ul.actions li {
-    float: left;
-    line-height: $header-height - $header-action-border-height;
-  }
+    float: left; 
+    line-height: $header-height; }
 
   h3.title, 
   ul.actions li a {
@@ -37,6 +37,7 @@ header.header {
       text-align: center;
       
       &.toggle {
+        line-height: $header-height - $header-action-border-height;
         border-bottom: $header-action-border-height solid gray;
         &.active { border-bottom-color: white; }
       }
@@ -58,19 +59,29 @@ header.header {
       background-color: $color;
     }
 
-    ul.actions li.toggle {
-      border-bottom-color: lighten($color, 10%);
+    ul.actions li {
+      &.toggle {
+        border-bottom-color: lighten($color, 10%);
 
-      &:hover {
-        border-bottom-color: lighten($color, 20%); 
-        a { color: darken(white, 20%); }
-      }
-      &.active {
-        border-bottom-color: lighten($color, 30%);
-        a { color: #fff; }
+        &:hover {
+          border-bottom-color: lighten($color, 20%); 
+          a { color: darken(white, 20%); }
+        }
+        &.active {
+          border-bottom-color: lighten($color, 30%);
+          a { color: #fff; }
+        }
+
+        a { color: darken(white, 30%); }
       }
 
-      a { color: darken(white, 30%); }
+      &.button {
+        &:hover {
+          background: lighten($color, 6%); }
+        &:active,
+        &.active {
+          background: darken($color, 1%); }
+      }
     }
   }
 }

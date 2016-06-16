@@ -3,13 +3,6 @@
     height: $header-height;
 
     .user {
-      .login a,
-      .username {
-        line-height: $header-height;
-        padding: 0 20px;
-        color: #fff;
-      }
-
       .username {
         @extend %truncate;
 

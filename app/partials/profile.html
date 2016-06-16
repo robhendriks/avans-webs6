@@ -1,6 +1,11 @@
 <div ng-if="!hasUser()" class="login">
   <a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost/games"><i class="fa fa-fw fa-lock"></i> Klik hier om in te loggen</a>
 </div>
-<h3 ng-if="hasUser()" class="username">
+<h3 ng-if="hasUser()" class="title username">
   <span class="status online"></span> {{user.username}}
 </h3>
+<ul class="actions">
+  <li class="button" ui-sref-active="active">
+    <a ui-sref="gameList.createGame"><i class="fa fa-fx fa-plus"></i></a>
+  </li>
+</ul>

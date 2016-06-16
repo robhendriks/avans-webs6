@@ -2,8 +2,8 @@
 
 module.exports = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/games');
-  $urlRouterProvider.when('/games/:gameId', '/games/:gameId/board');
-  
+  $urlRouterProvider.when('/games/{gameId:[a-zA-Z0-9]{24,}}', '/games/{gameId}/board');
+
   $stateProvider
     .state('gameList', {
       url: '/games',
@@ -22,7 +22,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       }
     })
     .state('gameList.gameDetails', {
-      url: '/:gameId',
+      url: '/{gameId:[a-zA-Z0-9]{24,}}',
       views: {
         'ViewDetail@': {
           templateUrl: 'partials/game-details.html',
@@ -53,5 +53,13 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       url: '/users',
       templateUrl: 'partials/game-users.html',
       controller: 'GameUserListCtrl'
+    })
+    .state('gameList.createGame', {
+      url: '/create',
+      views: {
+        'ViewDetail@': {
+          template: 'omg lad'
+        }
+      }
     });
 };
