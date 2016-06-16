@@ -16,11 +16,15 @@ $tile-width: 70px;
 
   .tiles {
     position: relative;
+
     .tile {
       position: absolute;
       height: $tile-height;
       width: $tile-width;
       background-image: url(/images/sprite.png);
+
+      &.selected {
+        opacity: .6; }
 
       @each $tile in $tiles {
         $index: index($tiles, $tile) - 1;

@@ -4,10 +4,11 @@ module.exports = function($http) {
   
   return {
 
-    getTilesByGameId: function(gameId, callback) {
+    getTilesByGameId: function(gameId, params, callback) {
       $http({
         method: 'GET',
-        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Tiles'
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Tiles',
+        params: params
       }).then(function(response) {
         callback(null, response.data);
       }, function() {

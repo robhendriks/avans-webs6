@@ -13,6 +13,6 @@
 
 <div id="board" ng-if="game.state != 'open'">
   <div class="tiles">
-    <tile ng-repeat="tile in tiles" tile-model="tile"></tile>
+    <tile ng-repeat="tile in tiles" tile-model="tile" ng-click="selectTile(tile._id)"></tile>
   </div>
 </div>

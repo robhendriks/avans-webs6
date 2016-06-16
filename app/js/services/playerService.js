@@ -37,6 +37,19 @@ module.exports = function($http) {
         }, function(response) {
           callback(null, false);
         });
+    },
+
+    matchForGameId: function(gameId, tiles, callback) {
+       $http({
+        method: 'POST',
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Tiles/matches',
+        data: tiles
+      })
+        .then(function(response) {
+          callback(null, response.data);
+        }, function(response) {
+          callback(response.data, null);
+        });
     }
 
   }

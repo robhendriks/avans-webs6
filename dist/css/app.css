@@ -198,6 +198,8 @@ form.form div.form-group {
       height: 96px;
       width: 70px;
       background-image: url(/images/sprite.png); }
+      #board .tiles .tile.selected {
+        opacity: .6; }
       #board .tiles .tile-Bamboo1 {
         background-position: 0 0px; }
       #board .tiles .tile-Bamboo2 {
