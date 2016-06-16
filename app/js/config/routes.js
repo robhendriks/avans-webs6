@@ -13,7 +13,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
           controller: 'ProfileCtrl'
         },
         'ViewMaster': {
-          templateUrl: 'partials/game-list.html',
+          templateUrl: 'partials/game.list.html',
           controller: 'GameListCtrl'
         },
         'ViewDetail': {
@@ -25,7 +25,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       url: '/create',
       views: {
         'ViewDetail@': {
-          templateUrl: 'partials/game-create.html',
+          templateUrl: 'partials/game.create.html',
           controller: 'GameCreateCtrl'
         }
       }
@@ -34,7 +34,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       url: '/{gameId:[a-zA-Z0-9]{24,}}',
       views: {
         'ViewDetail@': {
-          templateUrl: 'partials/game-details.html',
+          templateUrl: 'partials/game.details.html',
           controller: 'GameDetailsCtrl',
           resolve: {
             game: function($stateParams, GameFactory, UserFactory, $q) {
@@ -52,16 +52,16 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     })
     .state('gameList.gameDetails.board', {
       url: '/board',
-      templateUrl: 'partials/game-board.html'
+      templateUrl: 'partials/game.board.html'
     })
     .state('gameList.gameDetails.info', {
       url: '/info',
-      templateUrl: 'partials/game-info.html',
+      templateUrl: 'partials/game.info.html',
       controller: 'GameInfoCtrl'
     })
     .state('gameList.gameDetails.users', {
       url: '/users',
-      templateUrl: 'partials/game-users.html',
+      templateUrl: 'partials/game.users.html',
       controller: 'GameUserListCtrl'
     });
 };

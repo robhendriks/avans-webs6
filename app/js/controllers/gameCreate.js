@@ -26,13 +26,12 @@ module.exports = function($scope, $state, TemplateFactory, GameFactory) {
       maxPlayers: $scope.maxPlayers
     }, function(game) {
       if (game) {
-        $state.go('gameList.gameDetails', {gameId: game._id});
         $scope.working = false;
 
-        var parent = $scope.$$prevSibling;
-        if (parent.state === null || parent.state.id === game.state) {
-          parent.games.splice(0, 0, game);
-        }        
+        $scope.$$prevSibling.reset();   
+        $scope.$$prevSibling.loadGames();
+
+        $state.go('gameList.gameDetails', {gameId: game._id});  
       }
     });
 

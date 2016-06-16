@@ -7,6 +7,8 @@ require('angular-socket-io/socket');
 
 var app = angular.module('mahjong', ['ui.router', 'ngCookies', 'btford.socket-io']);
 
+app.directive('tile', require('./directives/tileDirective'));
+
 app.factory('UserFactory', require('./services/userFactory'));
 app.factory('GameFactory', require('./services/gameFactory'));
 app.factory('TileFactory', require('./services/tileFactory'));
