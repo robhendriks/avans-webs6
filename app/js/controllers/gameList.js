@@ -86,6 +86,16 @@ module.exports = function($scope, GameFactory, UserFactory) {
     $scope.state = $scope.states[index];
   };
 
+  $scope.hasJoined = function(game) {
+    if (!$scope.user) { 
+      return false; 
+    }
+    var index = _.findIndex(game.players, function(player) {
+      return player._id === $scope.user.username;
+    });
+    return index !== -1;
+  };
+
   $scope.$watchGroup(['state', 'userOnly'], function(oldValues, newValues) {
     if (!initialized) { return; }
     $scope.reset();

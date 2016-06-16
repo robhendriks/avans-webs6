@@ -19,6 +19,7 @@ app.factory('httpRequestInterceptor', require('./services/httpRequestInterceptor
 app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
+app.controller('GameIdleCtrl', require('./controllers/gameIdle'));
 app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
 app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
 app.controller('GameInfoCtrl', require('./controllers/gameInfo'));

@@ -12,10 +12,12 @@ EventManager.prototype = {
     if (!this._events[name]) {
       this._events[name] = [];
     }
+    console.log('PUSH, DI BJOETON');
     this._events[name].push(callback);
   },
 
   fire: function(name, data) {
+    if (!this._events[name]) { return; }
     this._events[name].forEach(function(callback) {
       callback(data);
     });

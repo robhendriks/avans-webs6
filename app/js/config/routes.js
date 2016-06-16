@@ -2,7 +2,7 @@
 
 module.exports = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/games');
-  $urlRouterProvider.when('/games/{gameId:[a-zA-Z0-9]{24,}}', '/games/{gameId}/board');
+  $urlRouterProvider.when('/games/{gameId:[a-zA-Z0-9]{24,}}', '/games/{gameId}/idle');
 
   $stateProvider
     .state('gameList', {
@@ -49,6 +49,11 @@ module.exports = function($stateProvider, $urlRouterProvider) {
           }
         }
       }
+    })
+    .state('gameList.gameDetails.idle', {
+      url: '/idle',
+      templateUrl: 'partials/game.idle.html',
+      controller: 'GameIdleCtrl'
     })
     .state('gameList.gameDetails.board', {
       url: '/board',
