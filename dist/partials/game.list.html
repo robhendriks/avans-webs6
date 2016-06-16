@@ -1,0 +1,75 @@
+<!-- panel-left -->
+<div id="sidebar" class="panel panel-left">
+  
+  <!-- header -->
+  <header class="header header-light">
+
+    <!-- user -->
+    <div class="user">
+      <div class="login" ng-if="!user" >
+        <a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost/games"><i class="fa fa-fw fa-lock"></i> Klik hier om in te loggen</a>
+      </div>
+      <h3 class="title username" ng-if="user" >
+        <span class="status online"></span> {{user.username}}
+      </h3>
+      <ul class="actions" ng-if="user">
+        <li class="button" ui-sref-active="active" ng-hide="spinner">
+          <a ui-sref="games.create"><i class="fa fa-fx fa-plus"></i></a>
+        </li>
+        <li ng-show="spinner">
+          <a href="#"><i class="fa fa-spin fa-cog"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- /user -->
+
+  </header>
+  <!-- /header -->
+
+  <!-- games -->
+  <div class="games">
+    <ul class="game-states">
+      <li><a href="#" ng-class="{'active': isState(null)}" ng-click="setState(null)">Alles</a></li>
+      <li ng-repeat="state in states">
+        <a href="#" ng-class="{'active': isState(state)}" ng-click="setState(state)">{{state.text}}</a>
+      </li>
+    </ul>
+
+    <div class="game-list-wrapper">
+      <ul class="game-list">
+        <li class="game game-{{game.state}}" ng-repeat="game in games" ui-sref-active="active">    
+          <a ui-sref="games.view({gameId: game._id})">
+            <span class="game-name">
+              {{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
+            </span>
+            <span class="game-creator">{{game.createdBy.name}}</span>
+          </a>
+        </li>
+
+        <li class="placeholder placeholder-spinner" ng-if="loading">
+          <i class="fa fa-spin fa-refresh"></i>
+        </li>
+
+        <li class="placeholder placeholder-more" ng-if="!loading && nextPage" ng-click="getMoreGames()">
+          Meer spellen&hellip;
+        </li>
+
+        <li class="placeholder placeholder-empty" ng-if="!loading && !games.length">
+          <i class="fa fa-fw fa-frown-o"></i> Geen spellen gevonden
+        </li>
+      </ul>
+    </div>
+
+    <div class="game-list-filter">
+      <input type="checkbox" id="user-filter" ng-model="filterUser"/>
+      <label for="user-filter">Alleen spellen waar ik in zit weergeven</label>
+    </div> 
+  </div>
+  <!-- /games -->
+
+</div>
+<!-- /panel-left -->
+
+<!-- panel-right -->
+<div id="game" class="panel panel-right" ui-view></div>
+<!-- /panel-right -->

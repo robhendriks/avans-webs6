@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 
-module.exports = function($scope, $state, gameService, playerService) {
+module.exports = function($scope, $state, gameService, playerService, tileService) {
 
   function isOwner(player) {
     return $scope.game.createdBy._id === player._id;
@@ -21,17 +21,15 @@ module.exports = function($scope, $state, gameService, playerService) {
     if ($scope.user !== null) {
       $scope.isOwner = isOwner({_id: $scope.user.username});
       $scope.isMember = isMember({_id: $scope.user.username});
+    } else if ($scope.game.state === 'open') {
+      return;
     }
-  }
 
-  function removeGameFromList(game) {
-    for (var i = $scope.games.length - 1; i >= 0; i--) {
-      if ($scope.games[i]._id === game._id) {
-        $scope.games.splice(i, 1);
-        break;
+    tileService.getTilesByGameId($scope.game._id, function(err, tiles) {
+      if (!err && tiles) {
+        $scope.tiles = tiles;
       }
-    }
-    $state.go('games.index');
+    });
   }
 
   $scope.joinGame = function() {
@@ -41,7 +39,7 @@ module.exports = function($scope, $state, gameService, playerService) {
     playerService.joinGameById($scope.game._id, function(err) {
       playerService.getPlayersByGameId($scope.game._id, function(err, players) {
         $scope.isMember = true;
-        $scope.game.players = players;
+        $scope.getGames(true);
       });
     });
   };
@@ -50,10 +48,7 @@ module.exports = function($scope, $state, gameService, playerService) {
     if ($scope.game.state !== 'open') { return; }
     playerService.startGameById($scope.game._id, function(err) {
       if (!err) { return; }
-      $scope.game.state = 'playing';  
-      if ($scope.selectedState !== null && $scope.selectedState.id !== $scope.game.state) {
-        removeGameFromList($scope.game);
-      }
+     $scope.getGames(true);
     });
   };
 
@@ -61,7 +56,8 @@ module.exports = function($scope, $state, gameService, playerService) {
     var game = $scope.game;
     gameService.deleteGame(game._id, function(err) {
       if (err) { return; }
-      removeGameFromList(game);
+      $scope.getGames(true);
+      $state.go('games.index');
     });
   };
 

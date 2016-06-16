@@ -55,6 +55,10 @@ module.exports = function($scope, userService, gameService) {
     }
   };
 
+  $scope.getGames = function(reset) {
+    getGames(reset);
+  };
+
   $scope.getMoreGames = function() {
     pageIndex++;
     getGames();

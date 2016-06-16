@@ -4,11 +4,15 @@ module.exports = function($http) {
   
   return {
 
-    getTilesByGameId: function(gameId, success, failure) {
+    getTilesByGameId: function(gameId, callback) {
       $http({
         method: 'GET',
         url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Tiles'
-      }).then(success, failure);
+      }).then(function(response) {
+        callback(null, response.data);
+      }, function() {
+        callback(null, false);
+      });
     }
 
   }

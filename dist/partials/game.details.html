@@ -1,0 +1,11 @@
+<header class="header header-dark">
+  <h3 class="title">{{game.gameTemplate._id}}</h3>
+
+  <ul class="actions" ng-hide="game.state == 'open'">
+    <li class="toggle" ui-sref-active="active"><a ui-sref=".board"><i class="fa fa-fx fa-play-circle-o"></i></a></li>
+    <li class="toggle" ui-sref-active="active"><a ui-sref=".users"><i class="fa fa-fx fa-users"></i></a></li>
+    <li class="toggle" ui-sref-active="active"><a ui-sref=".info"><i class="fa fa-fx fa-bar-chart-o"></i></a></li>
+  </ul>
+</header>
+
+<div id="content" ui-view></div>

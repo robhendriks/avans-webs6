@@ -1,0 +1,34 @@
+$tiles: ('Bamboo1', 'Bamboo2', 'Bamboo3', 'Bamboo4', 'Bamboo5', 'Bamboo6', 'Bamboo7', 'Bamboo8', 'Bamboo9',
+         'Character1', 'Character2', 'Character3', 'Character4', 'Character5', 'Character6', 'Character7', 'Character8', 'Character9',
+         'Circle1', 'Circle2', 'Circle3', 'Circle4', 'Circle5', 'Circle6', 'Circle7', 'Circle8', 'Circle9',
+         'DragonGreen', 'DragonRed', 'DragonWhite',
+         'FlowerBamboo', 'FlowerChrysantememum', 'FlowerOrchid', 'FlowerPlum',
+         'SeasonAutumn', 'SeasonSpring', 'SeasonSummer', 'SeasonWinter',
+         'WindEast', 'WindNorth', 'WindSouth', 'WindWest');
+
+$tile-height: 96px;
+$tile-width: 70px;
+
+#board {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .tiles {
+    position: relative;
+    .tile {
+      position: absolute;
+      height: $tile-height;
+      width: $tile-width;
+      background-image: url(/images/sprite.png);
+
+      @each $tile in $tiles {
+        $index: index($tiles, $tile) - 1;
+
+        &-#{$tile} {
+          background-position: 0 #{-96*$index}px;
+        }
+      }
+    }
+  }
+}
