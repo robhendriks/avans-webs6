@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 				src: 'app/js/app.js',
 				dest: 'dist/js/app.js',
 				options: {
-					external: ['angular', 'angular-ui-router', 'angular-socket-io'],
+					external: ['angular', 'angular-ui-router'],
 					debug: true,
 					browserifyOptions: {debug: true}
 				}
