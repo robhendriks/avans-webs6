@@ -1,36 +1,72 @@
-<ul class="game-states">
-  <li><a href="#" ng-class="{'active': state == null}" ng-click="setState(-1)">Alles</a></li>
-  <li ng-repeat="state in states">
-    <a href="#" ng-class="{'active': $parent.state.id == state.id}" ng-click="setState($index)">{{state.text}}</a>
-  </li>
-</ul>
+<!-- panel-left -->
+<div id="sidebar" class="panel panel-left">
+  
+  <!-- header -->
+  <header class="header header-light">
 
-<div class="game-list-wrapper">
-  <ul class="game-list">
-    <li class="game game-{{game.state}}" ng-repeat="game in games" ui-sref-active="active">    
-      <a ui-sref="gameList.gameDetails({gameId: game._id})">
-        <span class="game-name">
-          {{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
-        </span>
-        <span class="game-creator">{{game.createdBy.name}}</span>
-      </a>
-    </li>
+    <!-- user -->
+    <div class="user">
+      <div class="login" ng-if="!user" >
+        <a href="http://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost/games"><i class="fa fa-fw fa-lock"></i> Klik hier om in te loggen</a>
+      </div>
+      <h3 class="title username" ng-if="user" >
+        <span class="status online"></span> {{user.username}}
+      </h3>
+      <ul class="actions" ng-if="user" >
+        <li class="button" ui-sref-active="active">
+          <a ui-sref="games.create"><i class="fa fa-fx fa-plus"></i></a>
+        </li>
+      </ul>
+    </div>
+    <!-- /user -->
 
-    <li class="placeholder placeholder-spinner" ng-if="!loaded">
-      <i class="fa fa-spin fa-refresh"></i>
-    </li>
+  </header>
+  <!-- /header -->
 
-    <li class="placeholder placeholder-more" ng-if="loaded && hasMore" ng-click="loadMoreGames()">
-      Meer spellen&hellip;
-    </li>
+  <!-- games -->
+  <div class="games">
+    <ul class="game-states">
+      <li><a href="#" ng-class="{'active': isState(null)}" ng-click="setState(null)">Alles</a></li>
+      <li ng-repeat="state in states">
+        <a href="#" ng-class="{'active': isState(state)}" ng-click="setState(state)">{{state.text}}</a>
+      </li>
+    </ul>
 
-    <li class="placeholder placeholder-empty" ng-if="loaded && !games.length">
-      <i class="fa fa-fw fa-frown-o"></i> Geen spellen gevonden
-    </li>
-  </ul>
+    <div class="game-list-wrapper">
+      <ul class="game-list">
+        <li class="game game-{{game.state}}" ng-repeat="game in games" ui-sref-active="active">    
+          <a ui-sref="games.view({gameId: game._id})">
+            <span class="game-name">
+              {{game.gameTemplate._id}} <sup class="count">({{game.players.length}}/{{game.maxPlayers}})</sup>
+            </span>
+            <span class="game-creator">{{game.createdBy.name}}</span>
+          </a>
+        </li>
+
+        <li class="placeholder placeholder-spinner" ng-if="loading">
+          <i class="fa fa-spin fa-refresh"></i>
+        </li>
+
+        <li class="placeholder placeholder-more" ng-if="!loading && nextPage" ng-click="getMoreGames()">
+          Meer spellen&hellip;
+        </li>
+
+        <li class="placeholder placeholder-empty" ng-if="!loading && !games.length">
+          <i class="fa fa-fw fa-frown-o"></i> Geen spellen gevonden
+        </li>
+      </ul>
+    </div>
+
+    <div class="game-list-filter">
+      <input type="checkbox" id="user-filter" ng-model="filterUser"/>
+      <label for="user-filter">Alleen spellen waar ik in zit weergeven</label>
+    </div> 
+  </div>
+  <!-- /games -->
+
 </div>
+<!-- /panel-left -->
 
-<div class="game-list-filter">
-  <input type="checkbox" id="user-filter" ng-model="userOnly"/>
-  <label for="user-filter">Alleen spellen waar ik in zit weergeven</label>
-</div> 
+<!-- panel-right -->
+<div id="game" class="panel panel-right" ui-view></div>
+<!-- /panel-right -->

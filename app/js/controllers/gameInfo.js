@@ -1,4 +1,4 @@
 'use strict';
 
-module.exports = function($scope, $state, UserFactory, GameFactory) {
+module.exports = function($scope, $state, GameFactory) {
 };

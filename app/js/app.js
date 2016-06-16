@@ -9,21 +9,21 @@ var app = angular.module('mahjong', ['ui.router', 'ngCookies', 'btford.socket-io
 
 app.directive('tile', require('./directives/tileDirective'));
 
-app.factory('UserFactory', require('./services/userFactory'));
-app.factory('GameFactory', require('./services/gameFactory'));
-app.factory('TileFactory', require('./services/tileFactory'));
-app.factory('PlayerFactory', require('./services/playerFactory'));
-app.factory('TemplateFactory', require('./services/templateFactory'));
+app.factory('userService', require('./services/userService'));
+app.factory('gameService', require('./services/gameService'));
+app.factory('tileService', require('./services/tileService'));
+app.factory('playerService', require('./services/playerService'));
+app.factory('templateService', require('./services/templateService'));
+
 app.factory('httpRequestInterceptor', require('./services/httpRequestInterceptor'));
 
-app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
-app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
-app.controller('GameIdleCtrl', require('./controllers/gameIdle'));
-app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
-app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
-app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
+app.controller('GameViewCtrl', require('./controllers/gameView'));
 app.controller('GameCreateCtrl', require('./controllers/gameCreate'));
+
+// app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
+// app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
+// app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
 
 app.config(require('./config/routes'));
 

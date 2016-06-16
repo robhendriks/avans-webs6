@@ -2,17 +2,17 @@
   <h3 class="title">Nieuw spel</h3>
 
   <ul class="actions">
-    <li class="button" ng-hide="working"><a ui-sref="^"><i class="fa fa-fw fa-times"></i></a></li>
+    <li class="button" ng-hide="loading"><a ui-sref="^"><i class="fa fa-fw fa-times"></i></a></li>
   </ul>
 </header>
 
 <div id="content">
   <div class="content-wrap">
-    <span ng-show="working">
-      <i class="fa fa-fw fa-spin fa-cog"></i> Een ogenblik geduld&hellip;
+    <span ng-show="loading">
+      <i class="fa fa-spin fa-cog"></i>
     </span>
 
-    <form name="form" ng-submit="submit(form.$valid)" class="form" ng-hide="working" novalidate>
+    <form name="form" ng-submit="submit(form.$valid)" class="form" ng-hide="loading" novalidate>
       <div class="form-group">
         <label for="template">Template</label>
         <select name="template" ng-options="template._id for template in templates" ng-model="selectedTemplate" ng-required="true"></select>
