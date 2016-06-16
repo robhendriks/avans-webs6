@@ -3,6 +3,18 @@
     height: $header-height;
 
     .user {
+
+      .login{
+        float: left;
+        line-height: $header-height;
+        padding-left: 20px;
+        
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+
       .username {
         @extend %truncate;
 
