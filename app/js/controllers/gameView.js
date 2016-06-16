@@ -1,8 +1,7 @@
 'use strict';
 
-module.exports = function($scope, game) {
+module.exports = function($scope, $state, game) {
   function init() {
-    console.log(game);
     $scope.game = game;
   }
 

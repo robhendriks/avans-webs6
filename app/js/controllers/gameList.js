@@ -3,7 +3,7 @@
 var _ = require('underscore');
 
 module.exports = function($scope, userService, gameService) {
-  var pageSize = 10;
+  var pageSize = 15;
   var pageIndex = 0;
 
   function getGames(reset) {
@@ -66,7 +66,7 @@ module.exports = function($scope, userService, gameService) {
 
   $scope.isState = function(state) {
     return $scope.selectedState === state;
-  }
+  };
 
   $scope.$watch('filterUser', function(newValue, oldValue) {
     if (newValue !== oldValue) {

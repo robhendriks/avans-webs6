@@ -2,7 +2,7 @@
 
 module.exports = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/games');
-  // $urlRouterProvider.when('/games/view/:gameId', '/games/view/:gameId/board');
+  $urlRouterProvider.when('/games/view/:gameId', '/games/view/:gameId/board');
 
   $stateProvider
     .state('games', {
@@ -35,5 +35,10 @@ module.exports = function($stateProvider, $urlRouterProvider) {
           return defer.promise;
         }
       }
+    })
+    .state('games.view.board', {
+      url: '/board',
+      templateUrl: 'partials/game.board.html',
+      controller: 'GameBoardCtrl'
     });
 };

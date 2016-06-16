@@ -14,14 +14,14 @@ app.factory('gameService', require('./services/gameService'));
 app.factory('tileService', require('./services/tileService'));
 app.factory('playerService', require('./services/playerService'));
 app.factory('templateService', require('./services/templateService'));
-
 app.factory('httpRequestInterceptor', require('./services/httpRequestInterceptor'));
 
+app.controller('MainCtrl', require('./controllers/main'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameViewCtrl', require('./controllers/gameView'));
 app.controller('GameCreateCtrl', require('./controllers/gameCreate'));
+app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
 
-// app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
 // app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
 // app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
 

@@ -12,9 +12,12 @@
       <h3 class="title username" ng-if="user" >
         <span class="status online"></span> {{user.username}}
       </h3>
-      <ul class="actions" ng-if="user" >
-        <li class="button" ui-sref-active="active">
+      <ul class="actions" ng-if="user">
+        <li class="button" ui-sref-active="active" ng-hide="spinner">
           <a ui-sref="games.create"><i class="fa fa-fx fa-plus"></i></a>
+        </li>
+        <li ng-show="spinner">
+          <a href="#"><i class="fa fa-spin fa-cog"></i></a>
         </li>
       </ul>
     </div>
