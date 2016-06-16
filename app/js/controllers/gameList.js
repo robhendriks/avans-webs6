@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 
-const pageSize = 25;
+var pageSize = 25;
 
 module.exports = function($scope, GameFactory, UserFactory) {
   var initialized = false;

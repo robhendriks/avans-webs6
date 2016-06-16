@@ -17,14 +17,14 @@
           display: inline-block;
 
           &.status {
-            $size: 11px;
+            &:before {
+              content: '\002B22';
+              margin-right: 10px;
+              color: grey;
+            }
 
-            height: $size;
-            width: $size;
-            margin-right: $size / 2;
-            background-color: $tint-color-green;
-
-            @include border-radius($size / 2);
+            &.online:before { color: $tint-color-green; }
+            &.offline:before { color: $tint-color-red; }
           }
         }
       }
