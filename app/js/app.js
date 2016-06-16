@@ -21,9 +21,7 @@ app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameViewCtrl', require('./controllers/gameView'));
 app.controller('GameCreateCtrl', require('./controllers/gameCreate'));
 app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
-
-// app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
-// app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
+app.controller('PlayerListCtrl', require('./controllers/playerList'));
 
 app.config(require('./config/routes'));
 

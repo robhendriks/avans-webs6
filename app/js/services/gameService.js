@@ -26,7 +26,7 @@ module.exports = function($http) {
       });
     },
 
-    create: function(newGame, callback) {
+    createGame: function(newGame, callback) {
       $http({
         method: 'POST',
         url: 'http://mahjongmayhem.herokuapp.com/Games',
@@ -39,19 +39,16 @@ module.exports = function($http) {
         });
     },
 
-    delete: function(id, callback) {
+    deleteGame: function(gameId, callback) {
       $http({
         method: 'DELETE',
-        url: 'http://mahjongmayhem.herokuapp.com/Games/' + id
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId
       })
         .then(function(response) {
-          em.fire('delete', id);
-          success(id);
-        }, failure);
-    },
-
-    on: function(name, callback) {
-      em.on(name, callback);
+          callback(null, response.data);
+        }, function() {
+          callback(null, false);
+        });
     }
   };
 };

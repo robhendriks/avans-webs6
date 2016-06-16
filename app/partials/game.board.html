@@ -2,10 +2,10 @@
   <div class="placeholder-content">
     <h3>Wachten op spelers&hellip;</h3>
   
-    <div class="actions">
-      <button class="btn btn-primary" ng-show="isJoined">Meespelen</button>
-      <button class="btn btn-success" ng-show="isOwner && game.players.length >= game.minPlayers">Starten</button>
-      <button class="btn btn-danger" ng-show="isOwner">Verwijderen</button>
+    <div class="actions" ng-hide="user == null">
+      <button class="btn btn-primary" ng-show="!isMember && game.players.length < game.maxPlayers" ng-click="joinGame()">Meespelen</button>
+      <button class="btn btn-success" ng-show="isOwner && game.players.length >= game.minPlayers" ng-click="startGame()">Starten</button>
+      <button class="btn btn-danger" ng-show="isOwner" ng-click="deleteGame()">Verwijderen</button>
     </div>
 
   </div>

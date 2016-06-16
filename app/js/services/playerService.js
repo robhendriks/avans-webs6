@@ -3,11 +3,40 @@
 module.exports = function($http) {
   return {
 
-    joinGameById: function(gameId, success, failure) {
+    getPlayersByGameId: function(gameId, callback) {
+      $http({
+        method: 'GET',
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Players'
+      })
+        .then(function(response) {
+          callback(null, response.data);
+        }, function(response) {
+          callback(null, false);
+        });
+    },
+
+    joinGameById: function(gameId, callback) {
       $http({
         method: 'POST',
         url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Players'
-      }).then(success, failure);
+      })
+        .then(function(response) {
+          callback(null, response.data);
+        }, function(response) {
+          callback(null, false);
+        });
+    },
+
+    startGameById: function(gameId, callback) {
+      $http({
+        method: 'POST',
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Start'
+      })
+        .then(function(response) {
+          callback(null, response.data);
+        }, function(response) {
+          callback(null, false);
+        });
     }
 
   }

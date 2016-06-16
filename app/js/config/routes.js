@@ -9,7 +9,7 @@ module.exports = function($stateProvider, $urlRouterProvider) {
       abstract: true,
       url: '/games',
       templateUrl: 'partials/game.list.html',
-      controller: 'GameListCtrl'
+      controller: 'GameListCtrl as glc'
     })
     .state('games.index', {
       url: '',
@@ -18,12 +18,12 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     .state('games.create', {
       url: '/create',
       templateUrl: 'partials/game.create.html',
-      controller: 'GameCreateCtrl'
+      controller: 'GameCreateCtrl as gcc'
     })
     .state('games.view', {
       url: '/view/:gameId',
       templateUrl: 'partials/game.view.html',
-      controller: 'GameViewCtrl',
+      controller: 'GameViewCtrl as gvc',
       resolve: {
         game: function($stateParams, $q, gameService) {
           var defer = $q.defer();
@@ -39,6 +39,11 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     .state('games.view.board', {
       url: '/board',
       templateUrl: 'partials/game.board.html',
-      controller: 'GameBoardCtrl'
+      controller: 'GameBoardCtrl as gbc'
+    })
+    .state('games.view.players', {
+      url: '/players',
+      templateUrl: 'partials/game.player.list.html',
+      controller: 'PlayerListCtrl'
     });
 };

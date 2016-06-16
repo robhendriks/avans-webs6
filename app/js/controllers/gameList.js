@@ -50,7 +50,9 @@ module.exports = function($scope, userService, gameService) {
   };
 
   $scope.addGame = function(game) {
-    $scope.games.splice(0, 0, game);
+    if ($scope.selectedState === null || game.state === $scope.selectedState.id) {
+      $scope.games.splice(0, 0, game);
+    }
   };
 
   $scope.getMoreGames = function() {

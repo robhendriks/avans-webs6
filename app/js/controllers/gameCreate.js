@@ -51,7 +51,7 @@ module.exports = function($scope, $state, templateService, gameService) {
       maxPlayers: $scope.maxPlayers || 32
     };
 
-    gameService.create(game, function(err, newGame) {
+    gameService.createGame(game, function(err, newGame) {
       $scope.loading = false;
 
       if (!err && newGame) {
