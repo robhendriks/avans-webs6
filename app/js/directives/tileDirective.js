@@ -4,17 +4,15 @@ module.exports = function() {
 
   return {
     restrict: 'AE',
-    replace: true,
+    replace: 'true',
     scope: {
-      tileModel: '=',
-      render: '@'
+      tileModel: '='
     },
     templateUrl: '/js/templates/tile.dir.html',
-    controller: function($scope, TileFactory, $element) {
-
+    controller: function($scope, $element) {
     },
     link: function(scope, element, attributes) {
-
+      element.css('background', 'red'); 
     }
   };
 

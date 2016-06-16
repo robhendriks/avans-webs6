@@ -1,10 +1,19 @@
 'use strict';
 
-module.exports = function($timeout) {
+module.exports = function($http) {
   return {
-    GET: function() {},
-    PUT: function() {},
-    POST: function() {},
-    DELETE: function() {}
+    GET: function(gameId, callback) {
+
+      $http({
+        method: 'GET',
+        url: 'http://mahjongmayhem.herokuapp.com/Games/' + gameId + '/Tiles'
+      })
+        .then(function(response) {
+          callback(response.data);
+        }, function(response) {
+          callback(null);
+        });
+
+    },
   }
 };

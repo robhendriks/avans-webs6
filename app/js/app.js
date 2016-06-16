@@ -12,12 +12,14 @@ app.directive('tile', require('./directives/tileDirective'));
 app.factory('UserFactory', require('./services/userFactory'));
 app.factory('GameFactory', require('./services/gameFactory'));
 app.factory('TileFactory', require('./services/tileFactory'));
+app.factory('PlayerFactory', require('./services/playerFactory'));
 app.factory('TemplateFactory', require('./services/templateFactory'));
 app.factory('httpRequestInterceptor', require('./services/httpRequestInterceptor'));
 
 app.controller('ProfileCtrl', require('./controllers/profile'));
 app.controller('GameListCtrl', require('./controllers/gameList'));
 app.controller('GameDetailsCtrl', require('./controllers/gameDetails'));
+app.controller('GameBoardCtrl', require('./controllers/gameBoard'));
 app.controller('GameUserListCtrl', require('./controllers/gameUserList'));
 app.controller('GameInfoCtrl', require('./controllers/gameInfo'));
 app.controller('GameCreateCtrl', require('./controllers/gameCreate'));

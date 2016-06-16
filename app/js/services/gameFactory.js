@@ -1,8 +1,11 @@
 'use strict';
 
 var _ = require('underscore');
+var EventManager = require('../utility/eventManager');
 
 module.exports = function($http, UserFactory) {
+  var em = new EventManager();
+
   return {
     GET: function(arg, callback) {
 
@@ -38,6 +41,7 @@ module.exports = function($http, UserFactory) {
       })
         .then(function(response) {
           callback(response.data);
+          em.fire('post', response.data);
         }, function(response) {
           callback(null);
         });
@@ -50,11 +54,20 @@ module.exports = function($http, UserFactory) {
         url: 'http://mahjongmayhem.herokuapp.com/Games/' + id
       })
         .then(function(response) {
+          em.fire('delete', id);
           callback();
         }, function(response) {
           callback();
         });
 
+    },
+
+    addEventListener: function(evtName, callback) {
+      em.on(evtName, callback);
+    },
+
+    removeEventListeners: function(evtName) {
+      em.remove(evtName);
     }
   };
 };

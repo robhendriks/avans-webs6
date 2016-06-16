@@ -27,10 +27,6 @@ module.exports = function($scope, $state, TemplateFactory, GameFactory) {
     }, function(game) {
       if (game) {
         $scope.working = false;
-
-        $scope.$$prevSibling.reset();   
-        $scope.$$prevSibling.loadGames();
-
         $state.go('gameList.gameDetails', {gameId: game._id});  
       }
     });

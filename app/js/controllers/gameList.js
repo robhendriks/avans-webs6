@@ -21,7 +21,25 @@ module.exports = function($scope, GameFactory, UserFactory) {
   $scope.loaded = false;
   $scope.hasMore = true;
 
+  function gameRemoved(gameId) {
+    var index = _.findIndex($scope.games, function(game) {
+      return game._id === gameId;
+    });
+    if (index !== -1) { 
+      $scope.games.splice(index, 1); 
+    }
+  }
+
+  function gameAdded(game) {
+    if ($scope.state === null || game.state === $scope.state.id) {
+      $scope.games.splice(0, 0, game);
+    }
+  }
+
   $scope.init = function() {
+    GameFactory.addEventListener('delete', gameRemoved);
+    GameFactory.addEventListener('post', gameAdded);
+
     $scope.user = UserFactory.get();
     $scope.loadGames();
   };
@@ -56,15 +74,6 @@ module.exports = function($scope, GameFactory, UserFactory) {
 
   $scope.loadMoreGames = function() {
     $scope.page++;
-  };
-
-  $scope.deleteGame = function(game) {
-    for (var i = 0; i < $scope.games.length; i++) {
-      if ($scope.games[i]._id === game._id) {
-        $scope.games.splice(i, 1);
-        return;
-      }
-    }
   };
 
   $scope.setState = function(index) {

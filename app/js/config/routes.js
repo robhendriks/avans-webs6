@@ -52,7 +52,8 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     })
     .state('gameList.gameDetails.board', {
       url: '/board',
-      templateUrl: 'partials/game.board.html'
+      templateUrl: 'partials/game.board.html',
+      controller: 'GameBoardCtrl'
     })
     .state('gameList.gameDetails.info', {
       url: '/info',
