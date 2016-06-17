@@ -12,6 +12,7 @@
 </div>
 
 <div id="board" ng-if="game.state != 'open'">
+  <div class="overlay" ng-show="matching" ng-class="{'active': matching}"></div>
   <div class="tiles">
     <tile ng-repeat="tile in tiles" tile-model="tile" ng-click="selectTile(tile._id)"></tile>
   </div>
