@@ -14,6 +14,14 @@ $tile-width: 70px;
   width: 100%;
   height: 100%;
 
+  .overlay {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(white, .5);
+  }
+
   .tiles {
     position: relative;
 

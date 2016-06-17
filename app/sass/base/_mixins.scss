@@ -21,3 +21,18 @@
      -moz-transition: $arg;
           transition: $arg;
 }
+
+@mixin placeholder($arg){
+        &::-webkit-input-placeholder {
+         color: $arg;
+      }
+        &:-ms-input-placeholder {
+         color: $arg;
+      }
+        &:-moz-placeholder {
+         color: $arg;
+      }
+        &::-moz-placeholder  {
+         color: $arg;
+      }
+}

@@ -1,3 +1,4 @@
+<input type="text" ng-model="txtValue" placeholder="Typ hier uw zoekterm" id="userFilter">
 <ul id="userList">
-  <li ng-repeat="player in $parent.game.players"><span class="fa fa-user"></span>{{player.name}}</li>
+  <li ng-repeat="player in $parent.game.players | filter: txtValue"><span class="fa fa-user"></span>{{player.name}}</li>
 </ul>

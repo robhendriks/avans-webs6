@@ -9,7 +9,6 @@ module.exports = function($scope, $state, gameService, playerService, tileServic
     one: undefined, 
     two: undefined
   };
-  var matching = false;
 
   function isOwner(player) {
     return $scope.game.createdBy._id === player._id;
@@ -53,6 +52,8 @@ module.exports = function($scope, $state, gameService, playerService, tileServic
     socket.on('end', onEnd);
     socket.on('playerJoined', onPlayerJoined);
     socket.on('match', onMatch);
+
+    $scope.matching = false;
 
     if ($scope.user !== null) {
       $scope.isOwner = isOwner({_id: $scope.user.username});
@@ -99,6 +100,7 @@ module.exports = function($scope, $state, gameService, playerService, tileServic
   };
 
   function removeTiles(tileIds) {
+    if (!tileIds) { return; }
     for (var i = tileIds.length - 1; i >= 0; i--) {
       for (var j = $scope.tiles.length - 1; j >= 0; j--) {
         if ($scope.tiles[j]._id === tileIds[i]) {
@@ -109,7 +111,7 @@ module.exports = function($scope, $state, gameService, playerService, tileServic
   }
 
   $scope.selectTile = function(tileId) {
-    if (matching) { return; }
+    if ($scope.matching) { return; }
     else if (!$scope.isMember) {
       alert('Alleen kijken niet aanraken ;)');
       return;
@@ -125,14 +127,14 @@ module.exports = function($scope, $state, gameService, playerService, tileServic
         tile2Id: selection.two
       };
 
-      matching = true;
+      $scope.matching = true;
 
       playerService.matchForGameId($scope.game._id, tiles, function(err, data) {
         if (err) {
           alert(err.message);
         }
         selection.one = selection.two = undefined;
-        matching = false;
+        $scope.matching = false;
       })
     }
   };

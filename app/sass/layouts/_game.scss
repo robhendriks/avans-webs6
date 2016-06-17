@@ -20,6 +20,19 @@
 
   > div.content-wrap {
     padding: 15px; }
+    
+    #userFilter {
+      width: 100%;
+      display: block; 
+      border: none;
+      border-bottom: 1px #eee solid;
+      height: 40px;
+      line-height: 40px;
+      outline: none;
+      padding: 0px 20px;
+
+      @include placeholder(#bbb);
+    }
 
     #userList {
       margin:0;
