@@ -2,67 +2,48 @@
 
 module.exports = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/games');
-  $urlRouterProvider.when('/games/{gameId:[a-zA-Z0-9]{24,}}', '/games/{gameId}/board');
+  $urlRouterProvider.when('/games/view/:gameId', '/games/view/:gameId/board');
 
   $stateProvider
-    .state('gameList', {
+    .state('games', {
+      abstract: true,
       url: '/games',
-      views: {
-        'ViewProfile': {
-          templateUrl: 'partials/profile.html',
-          controller: 'ProfileCtrl'
-        },
-        'ViewMaster': {
-          templateUrl: 'partials/game.list.html',
-          controller: 'GameListCtrl'
-        },
-        'ViewDetail': {
-          templateUrl: 'partials/intro.html'
-        }
-      }
+      templateUrl: 'partials/game.list.html',
+      controller: 'GameListCtrl as glc'
     })
-    .state('gameList.gameCreate', {
+    .state('games.index', {
+      url: '',
+      templateUrl: 'partials/game.empty.html'
+    })
+    .state('games.create', {
       url: '/create',
-      views: {
-        'ViewDetail@': {
-          templateUrl: 'partials/game.create.html',
-          controller: 'GameCreateCtrl'
-        }
-      }
+      templateUrl: 'partials/game.create.html',
+      controller: 'GameCreateCtrl as gcc'
     })
-    .state('gameList.gameDetails', {
-      url: '/{gameId:[a-zA-Z0-9]{24,}}',
-      views: {
-        'ViewDetail@': {
-          templateUrl: 'partials/game.details.html',
-          controller: 'GameDetailsCtrl',
-          resolve: {
-            game: function($stateParams, GameFactory, UserFactory, $q) {
-              var defer = $q.defer();
-          
-              GameFactory.GET($stateParams.gameId, function(game) {
-                defer.resolve(game);
-              });
+    .state('games.view', {
+      url: '/view/:gameId',
+      templateUrl: 'partials/game.view.html',
+      controller: 'GameViewCtrl as gvc',
+      resolve: {
+        game: function($stateParams, $q, gameService) {
+          var defer = $q.defer();
 
-              return defer.promise;
-            }
-          }
+          gameService.getById($stateParams.gameId, function(err, game) {
+            defer.resolve(game);
+          });
+
+          return defer.promise;
         }
       }
     })
-    .state('gameList.gameDetails.board', {
+    .state('games.view.board', {
       url: '/board',
       templateUrl: 'partials/game.board.html',
-      controller: 'GameBoardCtrl'
+      controller: 'GameBoardCtrl as gbc'
     })
-    .state('gameList.gameDetails.info', {
-      url: '/info',
-      templateUrl: 'partials/game.info.html',
-      controller: 'GameInfoCtrl'
-    })
-    .state('gameList.gameDetails.users', {
-      url: '/users',
-      templateUrl: 'partials/game.users.html',
-      controller: 'GameUserListCtrl'
+    .state('games.view.players', {
+      url: '/players',
+      templateUrl: 'partials/game.player.list.html',
+      controller: 'PlayerListCtrl'
     });
 };
