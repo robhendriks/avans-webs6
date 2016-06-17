@@ -35,7 +35,7 @@ module.exports = function($scope, userService, gameService) {
     $scope.games = (pageIndex != 0) ? $scope.games.concat(games) : games;
   } 
 
-  function init() {
+  $scope.init = function() {
     $scope.user = userService.get();
     $scope.filterUser = false;
 
@@ -80,5 +80,6 @@ module.exports = function($scope, userService, gameService) {
     }
   });
 
-  init();
+  $scope.init();
+  
 };

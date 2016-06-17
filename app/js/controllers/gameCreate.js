@@ -31,7 +31,7 @@ module.exports = function($scope, $state, templateService, gameService) {
     });
   }
 
-  function init() {
+  $scope.init = function() {
     $scope.loading = false;
 
     $scope.selectedTemplate = null;
@@ -61,5 +61,5 @@ module.exports = function($scope, $state, templateService, gameService) {
     });
   };
 
-  init();
+  $scope.init();
 };

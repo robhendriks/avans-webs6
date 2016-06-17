@@ -1,15 +1,16 @@
 describe("Testing Games", function() {
 
-  var gameListCtrl, gameFactory, userFactory, $rootScope;
+  var gameListCtrl, gameService, userService, $rootScope;
 
   beforeEach(module('mahjong'));
 
-  beforeEach(inject(function($controller, _GameFactory_, _UserFactory_, _$rootScope_){
-    userFactory = _UserFactory_;
-    gameFactory = _GameFactory_;
+  beforeEach(inject(function($controller, _gameService_, _userService_, _$rootScope_){
+    userService = _userService_;
+    gameService = _gameService_;
     $rootScope = _$rootScope_.$new();
-    gameListCtrl = $controller('GameListCtrl', { $scope: $rootScope, GameFactory: gameFactory, UserFactory: userFactory});
+    gameListCtrl = $controller('GameListCtrl', { $scope: $rootScope, gameService: gameService, userService: userService});
     $rootScope.init();
+    $rootScope.getGames(true);
   }));
 
   it('should have games', function(done){  
@@ -24,4 +25,6 @@ describe("Testing Games", function() {
     expect(states).to.have.length.above(0);
     done();  
   });
+  
 });
+

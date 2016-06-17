@@ -496,6 +496,23 @@ header.header {
       transform: translate(-50%, -50%); }
   #content > div.content-wrap {
     padding: 15px; }
+  #content #userFilter {
+    width: 100%;
+    display: block;
+    border: none;
+    border-bottom: 1px #eee solid;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0px 20px; }
+    #content #userFilter::-webkit-input-placeholder {
+      color: #bbb; }
+    #content #userFilter:-ms-input-placeholder {
+      color: #bbb; }
+    #content #userFilter:-moz-placeholder {
+      color: #bbb; }
+    #content #userFilter::-moz-placeholder {
+      color: #bbb; }
   #content #userList {
     margin: 0;
     padding: 0; }
